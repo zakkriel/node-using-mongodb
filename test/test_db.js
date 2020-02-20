@@ -9,4 +9,4 @@ mongoose.connection
     .once('open', () => console.log('DB Connected!'))
     .on('error', (error) => {
         console.warn('Error : ',error);
-    });
+});
