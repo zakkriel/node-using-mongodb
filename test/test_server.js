@@ -1,7 +1,7 @@
-var request = require("request");
-var expect = require("expect.js");
+const request = require("request");
+const expect = require("expect.js");
 
-var base_url = "http://localhost:4000/"
+const base_url = "http://localhost:4000/"
 
 describe("Server Running", function() {
   describe("GET /", function() {
