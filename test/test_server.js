@@ -5,7 +5,7 @@ const base_url = "http://localhost:4000/"
 
 describe("Server Running", function() {
   describe("GET /", function() {
-    it("returns status code 200", function(done) {
+    it("returns status code 200 @connection", function(done) {
       request.get(base_url, function(error, response, body) {
         expect(response.statusCode).to.be(200);
         done();
