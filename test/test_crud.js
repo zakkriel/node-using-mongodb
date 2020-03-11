@@ -32,7 +32,7 @@ beforeEach((done) => {
 });
 
 describe('Creating documents', () => {
-    it('creates a new product', (done) => {
+    it('creates a new product @create-product', (done) => {
         const watch = new Product({ name: 'New watch', description: 'a new watch' });
         watch.save()
             .then(() => {
@@ -42,7 +42,7 @@ describe('Creating documents', () => {
     });
 });
 
-describe('Reading product details', () => {
+describe('Reading product details @find-product', () => {
     it('finds product with the name of Old Watch', (done) => {
         Product.findOne({ name: 'Old Watch' })
             .then(() => {
@@ -53,7 +53,7 @@ describe('Reading product details', () => {
 });
 
 describe('Deleting a product', () => {
-    it('removes a product using id', (done) => {
+    it('removes a product using id @remove-product', (done) => {
         let belt = new Product({ name: 'New belt', description: 'a new belt' });
         belt.save();
         Product.findOneAndDelete(belt._id)
