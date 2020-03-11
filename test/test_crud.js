@@ -55,7 +55,7 @@ describe('Reading product details @find-single-product', () => {
 
 describe('Reading product details @find-products', () => {
     it('finds product with the name of Old Watch', (done) => {
-        Product.findOne({ name: 'Old Watch' })
+        Product.find()
             .then(() => {
                 assert(watch2.name === 'Old Watch'); 
                 done();
