@@ -42,7 +42,18 @@ describe('Creating documents', () => {
     });
 });
 
-describe('Reading product details @find-product', () => {
+describe('Reading product details @find-single-product', () => {
+    it('finds product with the name of Old Watch', (done) => {
+        Product.findOne({ name: 'Old Watch' })
+            .then(() => {
+                assert(watch2.name === 'Old Watch'); 
+                done();
+            });
+    })
+});
+
+
+describe('Reading product details @find-products', () => {
     it('finds product with the name of Old Watch', (done) => {
         Product.findOne({ name: 'Old Watch' })
             .then(() => {
