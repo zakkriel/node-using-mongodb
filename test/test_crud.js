@@ -80,7 +80,6 @@ describe('Deleting a product', () => {
         let belt = new Product({ name: 'New belt', description: 'a new belt' });
         belt.save();
         Product.findOneAndDelete({_id: belt._id})
-        //.then(() => Product.findOne({ name: 'New belt' }))
         .then((product) => {
             assert(product === null);
         })
