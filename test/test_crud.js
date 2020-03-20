@@ -28,41 +28,65 @@ let watch2;
 beforeEach((done) => {
     watch2 = new Product({ name: 'Old Watch', description: 'a new watch' });
     watch2.save()
-        .then(() => done());
+        .then(() => done())
+        .catch((err) => {
+            console.error("Handling promise rejection", err);
+        });
 });
 
 describe('Creating documents', () => {
-    it('creates a new product', (done) => {
+    it('creates a new product @create-product', (done) => {
         const watch = new Product({ name: 'New watch', description: 'a new watch' });
         watch.save()
             .then(() => {
                 assert(!watch.isNew);
                 done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
             });
     });
 });
 
-describe('Reading product details', () => {
+describe('Reading product details @find-single-product', () => {
     it('finds product with the name of Old Watch', (done) => {
         Product.findOne({ name: 'Old Watch' })
             .then(() => {
                 assert(watch2.name === 'Old Watch'); 
                 done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
+            });
+    })
+});
+
+
+describe('Reading product details @find-products', () => {
+    it('finds product with the name of Old Watch', (done) => {
+        Product.findOne({ name: 'Old Watch' })
+            .then(() => {
+                assert(watch2.name === 'Old Watch'); 
+                done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
             });
     })
 });
 
 describe('Deleting a product', () => {
-    it('removes a product using id', (done) => {
+    it('removes a product using id @remove-product', (done) => {
         let belt = new Product({ name: 'New belt', description: 'a new belt' });
         belt.save();
-        Product.findOneAndDelete(belt._id)
-        .then(() => Product.findOne({ name: 'New belt' }))
+        Product.findOneAndDelete({_id: belt._id})
+        //.then(() => Product.findOne({ name: 'New belt' }))
         .then((product) => {
             assert(product === null);
-            done();
-        });
-
+        })
+        .catch((err) => {
+            console.error("Handling promise rejection", err);
+        })
         done();
     })
 })
