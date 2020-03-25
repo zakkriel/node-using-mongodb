@@ -35,6 +35,30 @@ beforeEach((done) => {
 });
 
 describe('Creating documents', () => {
+    it('Create the model and schema @create-model', (done) => {
+        const watch = new Product({ name: 'New watch', description: 'a new watch' });
+        watch.save()
+            .then(() => {
+                assert(!watch.isNew);
+                done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
+            });
+    })
+
+    it('creates controler for route @create-controler', (done) => {
+        const watch = new Product({ name: 'New watch', description: 'a new watch' });
+        watch.save()
+            .then(() => {
+                assert(!watch.isNew);
+                done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
+            });
+    })
+
     it('creates a new product @create-product', (done) => {
         const watch = new Product({ name: 'New watch', description: 'a new watch' });
         watch.save()
@@ -48,8 +72,9 @@ describe('Creating documents', () => {
     });
 });
 
-describe('Reading product details @find-single-product', () => {
-    it('finds product with the name of Old Watch', (done) => {
+
+describe('Pulling products', () => {
+    it('Add controler to pull a list of items @controler-lists', (done) => {
         Product.findOne({ name: 'Old Watch' })
             .then(() => {
                 assert(watch2.name === 'Old Watch'); 
@@ -59,11 +84,21 @@ describe('Reading product details @find-single-product', () => {
                 console.error("Handling promise rejection", err);
             });
     })
+
+    it('Add route to pull a list of items @route-lists', (done) => {
+        Product.findOne({ name: 'Old Watch' })
+            .then(() => {
+                assert(watch2.name === 'Old Watch'); 
+                done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
+            });
+    });
 });
 
-
-describe('Reading product details @find-products', () => {
-    it('finds product with the name of Old Watch', (done) => {
+describe('Find a single product', () => {
+    it('Add controler to pull a single item @controler-single', (done) => {
         Product.findOne({ name: 'Old Watch' })
             .then(() => {
                 assert(watch2.name === 'Old Watch'); 
@@ -73,10 +108,60 @@ describe('Reading product details @find-products', () => {
                 console.error("Handling promise rejection", err);
             });
     })
+
+    it('Add route to pull a single item @route-single', (done) => {
+        Product.findOne({ name: 'Old Watch' })
+            .then(() => {
+                assert(watch2.name === 'Old Watch'); 
+                done();
+            })
+            .catch((err) => {
+                console.error("Handling promise rejection", err);
+            });
+    });
 });
+
+
+describe('Updating a product', () => {
+    it('Add a controler to update a product @controler-update', (done) => {
+        Product.findOneAndUpdate({name: 'Old Watch'}, {name: 'Updated Watch'}, { new: true, useFindAndModify: false })
+        .then((product) => {
+            assert(product.name === 'Updated Watch'); 
+        })
+        .catch((err) => {
+            console.error("Handling promise rejection", err);
+        })
+        done();
+    })
+
+    it('Add a controler to update a product @route-update', (done) => {
+        Product.findOneAndUpdate({name: 'Old Watch'}, {name: 'Updated Watch'}, { new: true, useFindAndModify: false })
+        .then((product) => {
+            assert(product.name === 'Updated Watch'); 
+        })
+        .catch((err) => {
+            console.error("Handling promise rejection", err);
+        })
+        done();
+    })
+})
+
 
 describe('Deleting a product', () => {
-    it('removes a product using id @remove-product', (done) => {
+    it('Add a controler to remove a product @controler-remove', (done) => {
+        let belt = new Product({ name: 'New belt', description: 'a new belt' });
+        belt.save();
+        Product.findOneAndDelete({_id: belt._id})
+        .then((product) => {
+            assert(product === null);
+        })
+        .catch((err) => {
+            console.error("Handling promise rejection", err);
+        })
+        done();
+    })
+
+    it('Add a route to remove a product @route-remove', (done) => {
         let belt = new Product({ name: 'New belt', description: 'a new belt' });
         belt.save();
         Product.findOneAndDelete({_id: belt._id})
