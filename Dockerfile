@@ -1,13 +1,13 @@
 FROM node:latest
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /src/app
 
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
-COPY package.json /usr/src/app/
+COPY package.json /src/app/
 
 RUN npm install
 
-COPY . /usr/src/app
+COPY . /src/app
 
 EXPOSE 4000
