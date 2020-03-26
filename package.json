@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node -e js",
-    "test": "mocha"
+    "test": "mocha --exit './test/**/*.spec.js' || true",
+    "test:module2": "mocha --exit './test/module2/*.spec.js' || true",
+    "test:module3": "mocha --exit './test/module3/*.spec.js' || true",
+    "test:module4": "mocha --exit './test/module4/*.spec.js' || true",
+    "test:module5": "mocha --exit './test/module5/*.spec.js' || true"
   },
   "author": "Emmanuel Henri",
   "license": "ISC",
