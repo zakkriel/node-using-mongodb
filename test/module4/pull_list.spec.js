@@ -1,37 +1,24 @@
-const assert = require("assert");
-const Product = require("../test_util.js");
+const axios = require("axios");
+const expect = require("expect.js");
 
 describe('Pulling products', () => {
-    let watch2;
-    
-    before((done) => {
-        watch2 = new Product({ name: 'Old Watch', description: 'a new watch' });
-        watch2.save()
-            .then(() => done())
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
-    });
+    const url = 'http://localhost:4000/products';
 
     it('Add controler to pull a list of items @controller-lists', (done) => {
-        Product.findOne({ name: 'Old Watch' })
-            .then(() => {
-                assert(watch2.name === 'Old Watch'); 
-                done();
-            })
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
+        axios.get(url)
+        .then((response) => {
+            expect(response.data).to.be.an("array")
+            done();
+        })
+        .catch((error) => done(error));
     })
 
     it('Add route to pull a list of items @route-lists', (done) => {
-        Product.findOne({ name: 'Old Watch' })
-            .then(() => {
-                assert(watch2.name === 'Old Watch'); 
-                done();
-            })
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
+        axios.get(url)
+        .then((response) => {
+            expect(response.data).to.be.an("array")
+            done();
+        })
+        .catch((error) => done(error));
     });
 });

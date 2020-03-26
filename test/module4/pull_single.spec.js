@@ -1,37 +1,35 @@
-const assert = require("assert");
-const Product = require("../test_util.js");
+const expect = require("expect.js");
+const axios = require("axios");
 
 describe('Find a single product', () => {
-    let watch2;
-    
-    before((done) => {
-        watch2 = new Product({ name: 'Old Watch', description: 'a new watch' });
-        watch2.save()
-            .then(() => done())
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
-    });
+    const url = 'http://localhost:4000/products';
 
     it('Add controler to pull a single item @controller-single', (done) => {
-        Product.findOne({ name: 'Old Watch' })
-            .then(() => {
-                assert(watch2.name === 'Old Watch'); 
-                done();
+        let watch = { name: 'Blue Watch', description: 'a new watch' };
+
+        axios.post(url, watch)
+        .then((response) => {
+            axios.get(`${url}/${response.data._id}`)
+            .then((response) => {
+                expect(response.data.name).to.contain("Blue Watch")
             })
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
+            done();
+        })
+        .catch((error) => done(error));
     })
 
     it('Add route to pull a single item @route-single', (done) => {
-        Product.findOne({ name: 'Old Watch' })
-            .then(() => {
-                assert(watch2.name === 'Old Watch'); 
-                done();
+        let watch = { name: 'Red Watch', description: 'a new watch' };
+
+        axios.post(url, watch)
+        .then((response) => {
+            axios.get(`${url}/${response.data._id}`)
+            .then((response) => {
+                expect(response.data.name).to.contain("Red Watch")
             })
-            .catch((err) => {
-                console.error("Handling promise rejection", err);
-            });
-    });
+            done();
+        })
+        .catch((error) => done(error));
+    })
+
 });
