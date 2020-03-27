@@ -13,6 +13,7 @@ describe('Creating documents', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     })
 
     it('creates controler for route @controller-create', (done) => {
@@ -24,6 +25,7 @@ describe('Creating documents', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     })
 
     it('creates a new product @route-create', (done) => {
@@ -35,6 +37,7 @@ describe('Creating documents', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     });
 });
 

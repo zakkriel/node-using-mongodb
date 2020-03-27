@@ -11,11 +11,12 @@ describe('Find a single product', () => {
         .then((response) => {
             axios.get(`${url}/${response.data._id}`)
             .then((response) => {
-                expect(response.data.name).to.contain("Blue Watch")
+                expect(response.data.name).to.contain("Blue Watch");
+                done();
             })
-            done();
         })
         .catch((error) => done(error));
+        done();
     })
 
     it('Add route to pull a single item @route-single', (done) => {
@@ -25,11 +26,12 @@ describe('Find a single product', () => {
         .then((response) => {
             axios.get(`${url}/${response.data._id}`)
             .then((response) => {
-                expect(response.data.name).to.contain("Red Watch")
+                expect(response.data.name).to.contain("Red Watch");
+                done();
             })
-            done();
         })
         .catch((error) => done(error));
+        done();
     })
 
 });

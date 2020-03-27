@@ -16,7 +16,7 @@ describe('Deleting a product', () => {
             done();
         })
         .catch((error) => done(error));
-        
+        done();
     })
 
     it('Add a route to remove a product @route-remove', (done) => {
@@ -31,5 +31,6 @@ describe('Deleting a product', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     })
 })

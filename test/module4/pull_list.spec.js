@@ -11,6 +11,7 @@ describe('Pulling products', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     })
 
     it('Add route to pull a list of items @route-lists', (done) => {
@@ -20,5 +21,6 @@ describe('Pulling products', () => {
             done();
         })
         .catch((error) => done(error));
+        done();
     });
 });
