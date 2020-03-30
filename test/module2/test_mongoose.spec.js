@@ -1,18 +1,16 @@
-const mongoose = require('mongoose');
+const fs = require('fs');
+const expect = require('expect.js');
 
-mongoose.Promise = global.Promise;
+describe("Mongo tests @mongo", function () {
+    it("Mongoose promise", function (done) {
+        expect(fs.readFileSync('index.js').toString())
+            .to.contain("mongoose.Promise = global.Promise;")
+        done();
+    })
 
-describe("Mongo tests", function() {
-    it("Database connected @mongo", function(done) {
-        mongoose.connect('mongodb://localhost/productsdb', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }); 
-        mongoose.connection
-            .once('open', () => console.log('DB Connected!'))
-            .on('error', (error) => {
-                console.warn('Error : ',error);
-        });
+    it("Mongoose connected", function (done) {
+        expect(fs.readFileSync('index.js').toString())
+            .to.contain("mongoose.connect('mongodb://localhost/productsdb'")
         done();
     });
 });
