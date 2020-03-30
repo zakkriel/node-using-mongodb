@@ -1,26 +1,18 @@
-const axios = require("axios");
-const expect = require("expect.js");
+const fs = require('fs');
+const expect = require('expect.js');
 
 describe('Pulling products', () => {
-    const url = 'http://localhost:4000/products';
-
     it('Add controler to pull a list of items @controller-lists', (done) => {
-        axios.get(url)
-        .then((response) => {
-            expect(response.data).to.be.an("array")
-            done();
-        })
-        .catch((error) => done(error));
+        expect(fs.readFileSync('src/controllers/controllers.js').toString())
+            .to.contain("export const getProducts = (req, res) => {")
+        expect(fs.readFileSync('src/controllers/controllers.js').toString())
+            .to.contain("Product.find({}, (err, Product) => {")
         done();
     })
 
     it('Add route to pull a list of items @route-lists', (done) => {
-        axios.get(url)
-        .then((response) => {
-            expect(response.data).to.be.an("array")
-            done();
-        })
-        .catch((error) => done(error));
+        expect(fs.readFileSync('src/routes/routes.js').toString())
+            .to.contain(".get(getProducts)")
         done();
-    });
+    })
 });
