@@ -1,26 +1,16 @@
-const axios = require("axios");
-const expect = require("expect.js");
+const fs = require('fs');
+const expect = require('expect.js');
 
-const base_url = "http://localhost:4000/"
+describe("Server tests", function () {
+  it("returns status code 200 @connection", function (done) {
+    expect(fs.readFileSync('index.js').toString())
+      .to.contain("res.send(`Store server running on port ${PORT}`)")
+    done();
+  })
 
-describe("Server Running", function() {
-  describe("GET /", function() {
-    it("returns status code 200 @connection", (done) => {
-      axios.get(base_url)
-        .then((response) => {
-            expect(response.status).to.be(200)
-            done();
-        })
-        .catch((error) => done(error));
-    });
-
-    it("returns Store server running message", (done) => {
-      axios.get(base_url)
-      .then((response) => {
-          expect(response.data).to.be("Store server running on port 4000")
-          done();
-      })
-      .catch((error) => done(error));
-    });
+  it("returns Store server running message", function (done) {
+    expect(fs.readFileSync('index.js').toString())
+      .to.contain("console.log(`Your server is running on port ${PORT}`)")
+    done();
   });
 });
