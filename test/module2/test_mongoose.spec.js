@@ -3,15 +3,24 @@ const expect = require('expect.js');
 
 describe("Mongo tests @mongo", function () {
     it("Mongoose promise", function (done) {
-        expect(fs.readFileSync('index.js').toString())
+        try {
+            expect(fs.readFileSync('index.js').toString())
             .to.contain("mongoose.Promise = global.Promise;")
-        done();
-    })
+            done();
+        }
+        catch(error) {
+            done(new Error("No mongo promise in your code"));
+        }
+    });
 
     it("Mongoose connected", function (done) {
-        expect(fs.readFileSync('index.js').toString())
+        try {
+            expect(fs.readFileSync('index.js').toString())
             .to.contain("mongoose.connect('mongodb://localhost/productsdb'")
-        done();
+            done();   
+        } catch (error) {
+            done(new Error("No connection to Mongo detected"));
+        }
     });
 });
 
