@@ -11,6 +11,6 @@ describe('Folder structure is completed', () => {
     } catch (error) {
       done(new Error("Can't detect the folders and files requested"));
     }
-
+    done();
   });
 });
