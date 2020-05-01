@@ -7,7 +7,7 @@ describe('Deleting a product', () => {
             expect(fs.readFileSync('src/controllers/controllers.js').toString())
                 .to.contain("Product.deleteOne({ _id: req.params.ProductID}, (err, Product) => {")
             expect(fs.readFileSync('src/controllers/controllers.js').toString())
-                .to.contain("res.json({ message: 'successfully deleted product'});")
+                .to.contain("res.json({ message: 'successfully deleted product' });")
             done();
         } catch (error) {
             done(new Error("No controllers for DELETE endpoint detected"));
