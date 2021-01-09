@@ -1,10 +1,10 @@
 import { addnewProdcut} from '../controllers/controllers';
 
 
-const routes = (app) =>{
+const routes = (app) => {
     app.route('/products')
-    //Post endpoint
-    .post(addnewProdcut);
+        
+        .post(addnewProduct);
 }
 
 export default routes;
