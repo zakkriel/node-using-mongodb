@@ -13,14 +13,12 @@ mongoose.connect('mongodb+srv://Admin:N0MrB0nd@cluster0.nbuzg.mongodb.net/produc
     useUnifiedTopology : true
 })
 
+// bodyparser setup
+app.use(express.urlencoded());
+app.use(express.json()); 
+
 // routes
 routes(app);
-
-// bodyparser setup
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
-
-
 
 app.get('/', (req, res) =>
     res.send(`Store server running on port ${PORT}`)
