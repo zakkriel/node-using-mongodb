@@ -1,10 +1,12 @@
 {
     "folders": [
         {
-            "path": "/Users/briantobler/Proyects/node-using-mongodb"
+            "name": "src",
+            "path": "src"
         },
         {
-            "path": "src"
+            "name": "node-using-mongodb",
+            "path": "."
         }
     ],
     "settings": {}
