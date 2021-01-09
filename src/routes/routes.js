@@ -10,7 +10,7 @@ const routes = (app) => {
 
 
     app.route('/products/:ProductID')
-        .get(getProductWithID);
+        .get(getProductWithID)
 }
 
 export default routes;
